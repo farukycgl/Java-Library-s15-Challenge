@@ -63,4 +63,15 @@ public class Book {
                 ", Durum: " +status);
     }
 
+    @Override
+    public String toString() {
+        return "ID: " + bookID +
+                ", Ad: " + name +
+                ", Yazar: " + author.getName() +
+                ", Baskı: " + edition +
+                ", Yayın Tarihi: " + dateOfPurchase +
+                ", Kategori: " + category +
+                ", Durum: " + status;
+    }
+
 }

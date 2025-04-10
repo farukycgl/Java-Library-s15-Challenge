@@ -47,6 +47,16 @@ public class Library {
         borrowedRecords.remove(book);
     }
 
+    public List<Book> findBooksByTitle(String title) {
+        List<Book> result = new ArrayList<>();
+        for (Book book : books) {
+            if (book.getName().toLowerCase().contains(title.toLowerCase())) {
+                result.add(book);
+            }
+        }
+        return result;
+    }
+
     public Reader getBookOwner(Book book) {
         return borrowedRecords.get(book);
     }

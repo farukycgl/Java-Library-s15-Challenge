@@ -31,6 +31,6 @@ public class Reader extends Person {
 
     @Override
     public String whoYouAre() {
-        return "Ben bir okuyucuyum.";
+        return "Okuyucuyum.";
     }
 }

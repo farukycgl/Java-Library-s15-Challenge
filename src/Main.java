@@ -25,19 +25,17 @@ public class Main {
 
             System.out.println("**Kütüphane Sistemi**");
             System.out.println("1- Kitap Ekle");
-            System.out.println("2- Kitap Ara (ID)");
-            System.out.println("3- Kitap Ara (Yazar)");
-            System.out.println("4- Kitap Ara (Kategori)");
-            System.out.println("5- Kitap Sil");
-            System.out.println("6- Kitap Ödünç Al");
-            System.out.println("7- Kitap İade Et");
-            System.out.println("8- Kullanıcı Fatura Görüntüle");
-            System.out.println("9- Çıkış");
-            System.out.println("Seçiminiz: ");
+            System.out.println("2- Kitap Ara (İsim)");
+            System.out.println("3- Kitap Ara (ID)");
+            System.out.println("4- Kitap Ara (Yazar)");
+            System.out.println("5- Kitap Ara (Kategori)");
+            System.out.println("6- Kitap Sil");
+            System.out.println("7- Kitap Ödünç Al");
+            System.out.println("8- Kitap İade Et");
+            System.out.println("9- Kullanıcı Fatura Görüntüle");
+            System.out.println("10- Çıkış");
 
-            // sonra bunlarıda ekle!
-            // System.out.println("Kategorideki Kitapları Listele");
-            // System.out.println("Yazara Göre Kitap Listele");
+            System.out.println("Seçiminiz: ");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -52,7 +50,7 @@ public class Main {
                     String authorName = scanner.nextLine();
                     System.out.println("Baskı: ");
                     String edition = scanner.nextLine();
-                    System.out.println("Kategori (Journal, Study Book, Magazine): ");
+                    System.out.println("Kategori (JOURNAL, STUDY_BOOK, MAGAZINE, HISTORY): ");
                     BookCategory category = BookCategory.valueOf(scanner.nextLine().toUpperCase());
 
                     Author author = new Author(authorName);
@@ -61,6 +59,17 @@ public class Main {
                     break;
 
                 case 2:
+                    System.out.print("Kitap Adı: ");
+                    String searchTitle = scanner.nextLine();
+                    List<Book> booksByTitle = library.findBooksByTitle(searchTitle);
+                    if (booksByTitle.isEmpty()) {
+                        System.out.println("Bu isme sahip kitap bulunamadı!");
+                    } else {
+                        booksByTitle.forEach(System.out::println);
+                    }
+                    break;
+
+                case 3:
                     System.out.println("ID giriniz: ");
                     String searchId = scanner.nextLine();
                     Book foundBook = bookService.searchById(searchId);
@@ -70,27 +79,27 @@ public class Main {
                         System.out.println("Kitap bulunamadı!");
                     break;
 
-                case 3:
+                case 4:
                     System.out.println("Yazar adı giriniz: ");
                     String authorSearch = scanner.nextLine();
                     List<Book> byAuthor = bookService.searchByAuthor(authorSearch);
                     bookService.displayBooks(byAuthor);
                     break;
 
-                case 4:
-                    System.out.println("Kategori giriniz (Journal, Study Book, Magazine): ");
+                case 5:
+                    System.out.println("Kategori giriniz (JOURNAL, STUDY_BOOK, MAGAZINE, HISTORY): ");
                     BookCategory cat = BookCategory.valueOf(scanner.nextLine().toUpperCase());
                     List<Book> byCat = bookService.searchByCategory(cat);
                     bookService.displayBooks(byCat);
                     break;
 
-                case 5:
+                case 6:
                     System.out.println("Silinecek kitabın ID'si: ");
                     String removeId = scanner.nextLine();
                     bookService.removeBookById(removeId);
                     break;
 
-                case 6:
+                case 7:
                     System.out.println("Ödünç alınacak kitabın ID'si: ");
                     String borrowId = scanner.nextLine();
                     Book bookToBorrow = bookService.searchById(borrowId);
@@ -100,7 +109,7 @@ public class Main {
                         System.out.println("Kitap bulunamadı!");
                     break;
 
-                case 7:
+                case 8:
                     System.out.println("İade edilecek kitabın ID'si: ");
                     String returnId = scanner.nextLine();
                     Book bookToReturn = bookService.searchById(returnId);
@@ -109,14 +118,15 @@ public class Main {
                     else System.out.println("Kitap bulunamadı!");
                     break;
 
-                case 8:
+                case 9:
                     double bill = billingService.getBill(reader);
                     System.out.println("Toplam borcunuz: " + bill + " TL");
                     break;
 
-                case 9:
+                case 10:
                     running = false;
                     System.out.println("Sistemden çıkılıyor..");
+
 
                 default:
                     System.out.println("Geçerli bir seçim yapınız..!");

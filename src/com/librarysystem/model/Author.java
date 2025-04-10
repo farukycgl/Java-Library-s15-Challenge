@@ -10,10 +10,6 @@ public class Author extends Person{
         super(name);
     }
 
-    public void addBook(Book book) {
-        books.add(book);
-    }
-
     public List<Book> getBooks() {
         return books;
     }
