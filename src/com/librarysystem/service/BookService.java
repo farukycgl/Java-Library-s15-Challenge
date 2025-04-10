@@ -21,7 +21,7 @@ public class BookService {
         System.out.println("Kitap başarıyla eklendi.");
     }
 
-    public boolean removeBokkById(String id) {
+    public boolean removeBookById(String id) {
         boolean result = library.removeBook(id);
         if(result) {
             System.out.println("Kitap başarıyla silindi.");
